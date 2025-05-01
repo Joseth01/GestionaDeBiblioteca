@@ -12,6 +12,7 @@
 
         public string elTipo { get; set; } 
 
-        public string elEstado { get; set; } 
+        public string elEstado { get; set; }
+        
     }
 }

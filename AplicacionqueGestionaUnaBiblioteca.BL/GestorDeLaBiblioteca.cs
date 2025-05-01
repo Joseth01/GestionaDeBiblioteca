@@ -8,5 +8,6 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
 {
     class GestorDeLaBiblioteca
     {
+
     }
 }
