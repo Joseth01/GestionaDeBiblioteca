@@ -27,33 +27,39 @@
             <th>
                 @Html.DisplayNameFor(model => model.elEstado)
             </th>
-           
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.elId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.elNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.laDescripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.elTipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.elEstado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { id=item.elId }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.elId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.elNombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.laDescripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.elTipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.elEstado)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.elId })
+                    @if(item.elEstado==AplicacionqueGestionaUnaBiblioteca.Model.EstadoDeLibro.Disponible)
+                    {
+                        @Html.ActionLink("Prestar", "Prestar", new { id=item.elId })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Devolver", "Devolver", new { id = item.elId })
+                    }
+                </td>
         </tr>
 }
     </tbody>

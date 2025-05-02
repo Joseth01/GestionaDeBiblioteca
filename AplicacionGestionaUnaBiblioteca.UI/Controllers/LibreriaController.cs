@@ -19,17 +19,9 @@ namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
         // GET: LibreriaController
         public ActionResult Index()
         {
-            Libro elLibro = new Libro();
-            elLibro.elId = 1;
-            elLibro.elNombre = "El Principito";
-            elLibro.laDescripcion = "Un libro sobre un niño que viaja por el espacio";
-            elLibro.laFechaDePublicacion = new DateTime(1943, 4, 6);
-            elLibro.elTipo = TiposDeLibro.DeViaje;
-            elLibro.elEstado = EstadoDeLibro.Disponible;
-            elLibro.laUltimaFechaDeDevolucion = null;
+           
+            List<Libro> laListaDeLibros = elGestor.ObtengaLaLista();
 
-            List<Libro> laListaDeLibros = new List<Libro>();
-            laListaDeLibros.Add(elLibro);
 
             return View(laListaDeLibros);
         }
@@ -37,6 +29,8 @@ namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
         // GET: LibreriaController/Details/5
         public ActionResult Details(int id)
         {
+            Libro elLibro = elGestor.ObtengaElLibroPorId(id);
+            
             return View();
         }
 
@@ -62,46 +56,16 @@ namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
             }
         }
 
-        // GET: LibreriaController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: LibreriaController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: LibreriaController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Prestar(int id)
         {
-            return View();
+            elGestor.PresteElLibro(id);
+            return RedirectToAction(nameof(Index));
         }
-
-        // POST: LibreriaController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Devolver(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            elGestor.DevuelvaElLibro(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

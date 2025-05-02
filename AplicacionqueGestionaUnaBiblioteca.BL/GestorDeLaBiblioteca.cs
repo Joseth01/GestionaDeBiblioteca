@@ -36,8 +36,6 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
         public void RegistreUnLibro(Libro elNuevoLibro)
         {
             var laLista = ObtengaLaLista();
-
-            elNuevoLibro.elId = laLista.Count + 1;
             elNuevoLibro.elEstado = EstadoDeLibro.Disponible;
       
             laLista.Add(elNuevoLibro);
@@ -60,11 +58,13 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
 
         public void DevuelvaElLibro(int elId)
         {
-            var elLibro = ObtengaElLibroPorId(elId);
+              string laFecha=DateTime.Now.ToString();
+        var elLibro = ObtengaElLibroPorId(elId);
             if (elLibro != null && elLibro.elEstado == EstadoDeLibro.Prestado)
             {
                 elLibro.elEstado = EstadoDeLibro.Disponible;
-                
+                elLibro.laUltimaFechaDeDevolucion.Add(laFecha);
+
             }
         }
 
