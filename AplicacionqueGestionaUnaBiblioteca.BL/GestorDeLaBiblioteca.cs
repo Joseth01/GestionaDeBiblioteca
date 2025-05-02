@@ -34,7 +34,7 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
             var laLista = ObtengaLaLista();
 
             elNuevoLibro.elId = laLista.Count + 1;
-            elNuevoLibro.elEstado = "Disponible";
+            elNuevoLibro.elEstado = EstadoDeLibro.Disponible;
             elNuevoLibro.laUltimaFechaDeDevolucion = null;
 
             laLista.Add(elNuevoLibro);
@@ -49,25 +49,25 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
         public void PresteElLibro(int elId)
         {
             var elLibro = ObtengaElLibroPorId(elId);
-            if (elLibro != null && elLibro.elEstado == "Disponible")
+            if (elLibro != null && elLibro.elEstado == EstadoDeLibro.Disponible)
             {
-                elLibro.elEstado = "Prestado";
+                elLibro.elEstado = EstadoDeLibro.Prestado;
             }
         }
 
         public void DevuelvaElLibro(int elId)
         {
             var elLibro = ObtengaElLibroPorId(elId);
-            if (elLibro != null && elLibro.elEstado == "Prestado")
+            if (elLibro != null && elLibro.elEstado == EstadoDeLibro.Prestado)
             {
-                elLibro.elEstado = "Disponible";
+                elLibro.elEstado = EstadoDeLibro.Disponible;
                 elLibro.laUltimaFechaDeDevolucion = DateTime.Now;
             }
         }
 
         public List<Libro> ObtengaLosLibrosPrestados()
         {
-            return ObtengaLaLista().Where(libro => libro.elEstado == "Prestado").ToList();
+            return ObtengaLaLista().Where(libro => libro.elEstado == EstadoDeLibro.Prestado).ToList();
         }
     }
 

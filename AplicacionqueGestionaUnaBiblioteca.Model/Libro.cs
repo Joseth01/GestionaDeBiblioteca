@@ -9,10 +9,8 @@
         public string laDescripcion { get; set; }
 
         public DateTime laFechaDePublicacion { get; set; }
-
-        public string elTipo { get; set; } 
-
-        public string elEstado { get; set; }
+        public TiposDeLibro elTipo { get; set; } 
+        public EstadoDeLibro elEstado { get; set; }
         public DateTime? laUltimaFechaDeDevolucion { get; set; }
     }
 }
