@@ -10,7 +10,18 @@ namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
         // GET: LibreriaController
         public ActionResult Index()
         {
+            Libro elLibro = new Libro();
+            elLibro.elId = 1;
+            elLibro.elNombre = "El Principito";
+            elLibro.laDescripcion = "Un libro sobre un niño que viaja por el espacio";
+            elLibro.laFechaDePublicacion = new DateTime(1943, 4, 6);
+            elLibro.elTipo = TiposDeLibro.DeViaje;
+            elLibro.elEstado = EstadoDeLibro.Disponible;
+            elLibro.laUltimaFechaDeDevolucion = null;
+
             List<Libro> laListaDeLibros = new List<Libro>();
+            laListaDeLibros.Add(elLibro);
+
             return View(laListaDeLibros);
         }
 
