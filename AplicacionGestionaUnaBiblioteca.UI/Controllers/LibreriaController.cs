@@ -31,7 +31,7 @@ namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
         {
             Libro elLibro = elGestor.ObtengaElLibroPorId(id);
             
-            return View();
+            return View(elLibro);
         }
 
         // GET: LibreriaController/Create
@@ -66,6 +66,13 @@ namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
         {
             elGestor.DevuelvaElLibro(id);
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Prestados()
+        {
+            var librosPrestados = elGestor.ObtengaLosLibrosPrestados().Where(elLibro => elLibro.elEstado == EstadoDeLibro.Prestado).ToList();
+           
+            return View(librosPrestados);
+
         }
     }
 }

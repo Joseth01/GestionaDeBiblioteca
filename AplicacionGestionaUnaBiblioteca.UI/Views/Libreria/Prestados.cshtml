@@ -1,0 +1,35 @@
+﻿@model IEnumerable<AplicacionqueGestionaUnaBiblioteca.Model.Libro>
+
+@{
+    ViewData["Title"] = "Libros Prestados";
+}
+
+<h1>Libros Prestados</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.elId)</th>
+            <th>@Html.DisplayNameFor(model => model.elNombre)</th>
+            <th>@Html.DisplayNameFor(model => model.laDescripcion)</th>
+            <th>@Html.DisplayNameFor(model => model.laFechaDePublicacion)</th>
+            <th>@Html.DisplayNameFor(model => model.elTipo)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var libro in Model)
+        {
+            <tr>
+                <td>@libro.elId</td>
+                <td>@libro.elNombre</td>
+                <td>@libro.laDescripcion</td>
+                <td>@libro.laFechaDePublicacion.ToString("dd/MM/yyyy")</td>
+                <td>@libro.elTipo</td>
+           
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Volver al Catálogo</a>

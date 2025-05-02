@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AplicacionqueGestionaUnaBiblioteca.Model.Libro>
+﻿@model AplicacionqueGestionaUnaBiblioteca.Model.Libro
 
 @{
     ViewData["Title"] = "Details";
@@ -6,60 +6,63 @@
 
 <h1>Details</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.elId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.elNombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.laDescripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.laFechaDePublicacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.elTipo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.elEstado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.elId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.elNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.laDescripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.laFechaDePublicacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.elTipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.elEstado)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div>
+    <h4>Libro</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.elId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.elId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.elNombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.elNombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.laDescripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.laDescripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.laFechaDePublicacion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.laFechaDePublicacion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.elTipo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.elTipo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.elEstado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.elEstado)
+        </dd>
+    </dl>
+    <h4>Historial de Préstamos</h4>
+    @if (Model.laUltimaFechaDeDevolucion != null && Model.laUltimaFechaDeDevolucion.Any())
+    {
+        <ul>
+            @foreach (var laFecha in Model.laUltimaFechaDeDevolucion)
+            {
+                <li>@laFecha</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No hay historial de préstamos.</p>
+    }
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
