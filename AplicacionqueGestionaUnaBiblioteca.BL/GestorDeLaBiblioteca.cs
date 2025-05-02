@@ -20,10 +20,14 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
 
         public List<Libro> ObtengaLaLista()
         {
-            if (!elCache.TryGetValue(laClaveDelCache, out List<Libro> laLista))
+            List<Libro> laLista ;
+            if (elCache.Get("Datos") is null)
             {
                 laLista = new List<Libro>();
-                elCache.Set(laClaveDelCache, laLista);
+                elCache.Set("Datos", laLista);
+            }
+            else {
+                laLista = elCache.Get("Datos") as List<Libro>;
             }
 
             return laLista;
