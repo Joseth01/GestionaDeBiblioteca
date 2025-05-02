@@ -11,6 +11,7 @@
         public DateTime laFechaDePublicacion { get; set; }
         public TiposDeLibro elTipo { get; set; } 
         public EstadoDeLibro elEstado { get; set; }
-        public DateTime? laUltimaFechaDeDevolucion { get; set; }
+        public List<DateTime> laUltimaFechaDeDevolucion { get; set; }
+
     }
 }

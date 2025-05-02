@@ -8,7 +8,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace AplicacionqueGestionaUnaBiblioteca.BL
 {
-    class GestorDeLaBiblioteca
+    public class GestorDeLaBiblioteca
     {
         private readonly IMemoryCache elCache;
         private const string laClaveDelCache = "Libros";
@@ -39,8 +39,7 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
 
             elNuevoLibro.elId = laLista.Count + 1;
             elNuevoLibro.elEstado = EstadoDeLibro.Disponible;
-            elNuevoLibro.laUltimaFechaDeDevolucion = null;
-
+      
             laLista.Add(elNuevoLibro);
             elCache.Set(laClaveDelCache, laLista);
         }
@@ -65,7 +64,7 @@ namespace AplicacionqueGestionaUnaBiblioteca.BL
             if (elLibro != null && elLibro.elEstado == EstadoDeLibro.Prestado)
             {
                 elLibro.elEstado = EstadoDeLibro.Disponible;
-                elLibro.laUltimaFechaDeDevolucion = DateTime.Now;
+                
             }
         }
 

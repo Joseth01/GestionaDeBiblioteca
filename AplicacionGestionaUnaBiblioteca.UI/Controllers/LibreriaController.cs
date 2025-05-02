@@ -1,12 +1,21 @@
-﻿using AplicacionqueGestionaUnaBiblioteca.Model;
+﻿using AplicacionqueGestionaUnaBiblioteca.BL;
+using AplicacionqueGestionaUnaBiblioteca.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
 {
    
     public class LibreriaController : Controller
     {
+        GestorDeLaBiblioteca elGestor;
+        public LibreriaController(IMemoryCache elCache)
+        {
+            
+            elGestor = new GestorDeLaBiblioteca(elCache);
+
+        }
         // GET: LibreriaController
         public ActionResult Index()
         {
@@ -40,8 +49,9 @@ namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
         // POST: LibreriaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Libro ellibro)
         {
+            elGestor.RegistreUnLibro(ellibro);
             try
             {
                 return RedirectToAction(nameof(Index));
