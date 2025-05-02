@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AplicacionqueGestionaUnaBiblioteca.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AplicacionGestionaUnaBiblioteca.UI.Controllers
 {
+   
     public class LibreriaController : Controller
     {
         // GET: LibreriaController
         public ActionResult Index()
         {
-            return View();
+            List<Libro> laListaDeLibros = new List<Libro>();
+            return View(laListaDeLibros);
         }
 
         // GET: LibreriaController/Details/5
