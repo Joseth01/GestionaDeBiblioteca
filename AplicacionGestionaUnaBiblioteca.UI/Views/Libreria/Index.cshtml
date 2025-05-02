@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AplicacionqueGestionaUnaBiblioteca.Model.Libro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.elId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.elNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.laDescripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.laFechaDePublicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.elTipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.elEstado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.laUltimaFechaDeDevolucion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.elId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.elNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.laDescripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.laFechaDePublicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.elTipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.elEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.laUltimaFechaDeDevolucion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

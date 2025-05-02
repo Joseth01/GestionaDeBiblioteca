@@ -13,6 +13,6 @@
         public string elTipo { get; set; } 
 
         public string elEstado { get; set; }
-        
+        public DateTime? laUltimaFechaDeDevolucion { get; set; }
     }
 }
